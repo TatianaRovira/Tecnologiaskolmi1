@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glow Care | Blog y actividades</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fbfaf8;
+      color: #29272b;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #e8e5e1;
+      padding: 17px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { font-size: 1.35rem; font-weight: 700; text-decoration: none; letter-spacing: -.4px; }
+    .brand span { color: #8b6b9f; }
+    .topbar small { color: #77717a; }
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #e8e5e1;
+      padding: 10px 5%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+    nav a { text-decoration: none; color: #5c565f; font-size: .94rem; }
+    nav a:hover, nav a.active { color: #7b5793; text-decoration: underline; text-underline-offset: 5px; }
+    .page { max-width: 1120px; width: 90%; margin: 0 auto; }
+    .intro { padding: 45px 0 24px; }
+    .eyebrow { color: #8b6b9f; font-size: .8rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
+    h1 { font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.12; letter-spacing: -1.2px; margin: 8px 0 12px; }
+    .intro p { max-width: 700px; color: #625d65; font-size: 1.05rem; margin: 0; }
+    .topic-row { display: flex; flex-wrap: wrap; gap: 9px; padding: 8px 0 27px; }
+    .topic {
+      border: 1px solid #e5dce9;
+      background: #f4eef7;
+      color: #644c72;
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: .85rem;
+    }
+    .featured {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      background: #eee6f1;
+      border-radius: 13px;
+      overflow: hidden;
+      margin-bottom: 38px;
+    }
+    .featured-copy { padding: clamp(22px, 4vw, 42px); align-self: center; }
+    .tag { color: #7c5a8c; font-size: .78rem; font-weight: bold; text-transform: uppercase; letter-spacing: .8px; }
+    .featured h2 { font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.15; letter-spacing: -.7px; margin: 10px 0; }
+    .featured p { color: #5d5661; }
+    .featured img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; display: block; }
+    .button {
+      display: inline-block;
+      background: #755486;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin-top: 8px;
+      font-size: .92rem;
+    }
+    .button:hover { background: #5e416f; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 15px; margin: 15px 0 17px; }
+    .section-heading h2 { margin: 0; font-size: 1.65rem; letter-spacing: -.5px; }
+    .section-heading p { margin: 0; color: #77717a; font-size: .9rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 45px; }
+    .card {
+      background: #fff;
+      border: 1px solid #ebe7e3;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img { width: 100%; height: 175px; object-fit: cover; display: block; }
+    .card-body { padding: 18px; display: flex; flex-direction: column; align-items: flex-start; flex: 1; }
+    .card h3 { font-size: 1.18rem; line-height: 1.3; margin: 7px 0; }
+    .card p { color: #68626b; font-size: .94rem; margin: 0 0 12px; }
+    .read { color: #765486; font-weight: bold; text-decoration: none; margin-top: auto; font-size: .92rem; }
+    .read:hover { text-decoration: underline; }
+    .content-section {
+      background: #fff;
+      border: 1px solid #ebe7e3;
+      border-radius: 10px;
+      padding: clamp(20px, 3vw, 32px);
+      margin-bottom: 20px;
+      scroll-margin-top: 90px;
+    }
+    .content-section h2 { margin: 0 0 12px; font-size: 1.65rem; line-height: 1.25; }
+    .content-section h3 { color: #755486; margin-bottom: 6px; }
+    .content-section p { margin-top: 8px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .mini {
+      background: #faf7fb;
+      border: 1px solid #eee4f1;
+      border-radius: 8px;
+      padding: 15px 18px;
+    }
+    .mini h3 { margin-top: 0; }
+    ul, ol { padding-left: 23px; }
+    li { margin-bottom: 5px; }
+    .article-image { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin: 12px 0; }
+    .note { border-left: 4px solid #9b7bac; background: #f5eff7; padding: 13px 16px; border-radius: 4px; }
+    .references a { color: #765486; overflow-wrap: anywhere; }
+    .canva-link { display: inline-block; background: #f0e7f3; padding: 10px 13px; border-radius: 6px; color: #684b78; text-decoration: none; }
+    footer { margin-top: 35px; background: #f0e8f2; border-top: 1px solid #e3d8e8; text-align: center; padding: 25px 15px; color: #62566a; }
+    footer p { margin: 4px; }
+    @media (max-width: 760px) {
+      .featured { grid-template-columns: 1fr; }
+      .featured img { min-height: 220px; max-height: 260px; order: -1; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; gap: 4px; }
+    }
+    @media (max-width: 520px) {
+      .page { width: 92%; }
+      .cards, .two-col { grid-template-columns: 1fr; }
+      nav { gap: 13px; }
+      .card img { height: 195px; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="inicio">
+    <a class="brand" href="#inicio">Glow <span>Care</span></a>
+    <small>Ideas para cuidarnos y aprender</small>
+  </header>
+
+  <nav aria-label="Menú principal">
+    <a class="active" href="#inicio">Inicio</a>
+    <a href="#articulos">Artículos</a>
+    <a href="#semana1">Semana 1</a>
+    <a href="#semana6">Semana 6</a>
+    <a href="#referencias">Referencias</a>
+  </nav>
+
+  <main class="page">
+    <div class="intro">
+      <div class="eyebrow">El blog de Glow Care</div>
+      <h1>Ideas sencillas para el día a día</h1>
+      <p>Este espacio reúne las actividades del proyecto y algunos temas que vamos aprendiendo en clase. En esta edición hablamos sobre el dinero, las herramientas digitales y cómo organizar mejor una idea de negocio.</p>
+      <div class="topic-row">
+        <span class="topic">Economía digital</span>
+        <span class="topic">Finanzas personales</span>
+        <span class="topic">Emprendimiento</span>
+        <span class="topic">Cuidado personal</span>
+      </div>
+    </div>
+
+    <section class="featured" aria-label="Artículo destacado">
+      <div class="featured-copy">
+        <div class="tag">Artículo destacado · Semana 6</div>
+        <h2>Mi dinero en el mundo digital</h2>
+        <p>Usar el celular para pagar o comprar ya es parte de la vida diaria. En este artículo contamos lo bueno, lo que debemos tener en cuenta y cómo podemos aplicar estos aprendizajes a Glow Care.</p>
+        <a class="button" href="#semana6">Leer el artículo</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80" alt="Persona utilizando un celular para una operación digital">
+    </section>
+
+    <section id="articulos">
+      <div class="section-heading">
+        <h2>Explora los temas</h2>
+        <p>Actividades y apuntes del proyecto</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Pago con tarjeta en una tienda">
+          <div class="card-body">
+            <div class="tag">Finanzas digitales</div>
+            <h3>Lo bueno y lo no tan bueno de pagar por internet</h3>
+            <p>Las herramientas digitales ayudan bastante, pero también hay riesgos que conviene conocer antes de usarlas.</p>
+            <a class="read" href="#ventajas">Leer más →</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80" alt="Organización de cuentas y presupuesto">
+          <div class="card-body">
+            <div class="tag">Vida diaria</div>
+            <h3>Pequeños hábitos para cuidar el dinero</h3>
+            <p>Revisar los gastos y guardar un poco cuando se puede son pasos sencillos para organizarse mejor.</p>
+            <a class="read" href="#habitos">Leer más →</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=80" alt="Productos de cuidado de la piel">
+          <div class="card-body">
+            <div class="tag">Nuestro emprendimiento</div>
+            <h3>Cómo organizar las cuentas de Glow Care</h3>
+            <p>Una idea de negocio también necesita orden: saber qué entra, qué sale y qué debemos guardar.</p>
+            <a class="read" href="#estrategia">Leer más →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="semana1">
+      <div class="tag">Actividad anterior</div>
+      <h2>Semana 1: productividad y economía digital</h2>
+      <p>En esta sección se van organizando los avances del proyecto y los temas vistos en clase.</p>
+      <ul>
+        <li><strong>Tema trabajado:</strong> Productividad personal y economía digital.</li>
+        <li><strong>Proyecto:</strong> Creación de contenido sobre herramientas de productividad y economía digital.</li>
+      </ul>
+    </section>
+
+    <section class="content-section" id="semana6">
+      <div class="tag">Revista digital · Semana 6 · Grado once</div>
+      <h2>Mi dinero en el mundo digital</h2>
+      <p>Hoy podemos pagar, ahorrar y revisar nuestros gastos desde el celular. Eso nos facilita muchas cosas, pero también significa que tenemos que aprender a cuidar mejor nuestro dinero.</p>
+      <p>Este artículo explica con palabras sencillas qué son las Fintech, qué hábitos nos pueden ayudar y cómo aplicar estas ideas a nuestra empresa escolar, Glow Care.</p>
+      <a class="canva-link" href="https://canva.link/rejwj5nwxuinn1a" target="_blank" rel="noopener">Ver también el diseño en Canva ↗</a>
+    </section>
+
+    <section class="content-section" id="ventajas">
+      <div class="tag">Tema 1</div>
+      <h2>¿Qué son la economía digital y las Fintech?</h2>
+      <p>La economía digital es cuando usamos internet y herramientas tecnológicas para comprar, vender, trabajar o manejar nuestro dinero. Por ejemplo, cuando hacemos una transferencia desde el celular o compramos algo por una página web.</p>
+      <p>Las Fintech son empresas que usan la tecnología para ofrecer servicios financieros. Algunas permiten hacer pagos, transferencias, pedir créditos o llevar un control de los gastos desde una aplicación. Estas herramientas pueden ser muy útiles, siempre que las usemos con cuidado y revisemos que sean confiables.</p>
+      <h2>Ventajas y desventajas de los servicios financieros digitales</h2>
+      <div class="two-col">
+        <div class="mini">
+          <h3>Ventajas</h3>
+          <ul>
+            <li>Podemos hacer pagos y transferencias sin ir a una oficina.</li>
+            <li>Es más fácil revisar cuánto dinero tenemos y en qué lo gastamos.</li>
+            <li>Algunos servicios están disponibles casi a cualquier hora.</li>
+            <li>Los negocios pequeños pueden recibir pagos digitales y llegar a más clientes.</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Desventajas</h3>
+          <ul>
+            <li>Podemos caer en estafas o mensajes falsos que buscan robar nuestros datos.</li>
+            <li>Si falla el internet o la aplicación, puede ser difícil hacer un pago.</li>
+            <li>Comprar con un clic puede hacer que gastemos sin pensarlo mucho.</li>
+            <li>Algunos servicios cobran comisiones o intereses que debemos revisar.</li>
+          </ul>
+        </div>
+      </div>
+      <img class="article-image" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80" alt="Pago digital en un comercio">
+      <p class="note"><strong>Lo que pienso:</strong> estas herramientas no son buenas o malas por sí solas. Lo importante es saber usarlas, comparar las condiciones y no compartir claves ni códigos de seguridad con nadie.</p>
+    </section>
+
+    <section class="content-section" id="habitos">
+      <div class="tag">Tema 2</div>
+      <h2>Hábitos para cuidar la economía personal y familiar</h2>
+      <p>Para saber si estamos manejando bien el dinero, primero tenemos que observar nuestros hábitos. No se trata de tener mucho dinero, sino de organizarlo y tomar mejores decisiones.</p>
+      <div class="two-col">
+        <div class="mini">
+          <h3>Fortalezas que podemos tener</h3>
+          <ul>
+            <li>Anotar los ingresos y los gastos.</li>
+            <li>Separar una parte del dinero para ahorrar.</li>
+            <li>Comparar precios antes de comprar.</li>
+            <li>Revisar los movimientos de las cuentas y billeteras digitales.</li>
+            <li>Hablar en familia sobre los gastos importantes.</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3>Debilidades que debemos mejorar</h3>
+          <ul>
+            <li>Comprar por impulso cuando vemos ofertas en internet.</li>
+            <li>No revisar los pequeños gastos que se acumulan.</li>
+            <li>Usar crédito sin conocer los intereses.</li>
+            <li>No tener un ahorro para una emergencia.</li>
+            <li>Dar información personal o claves por mensajes sospechosos.</li>
+          </ul>
+        </div>
+      </div>
+      <p>Una forma sencilla de empezar es revisar los gastos al final de cada semana y preguntarnos cuáles eran necesarios y cuáles se podían evitar. También podemos usar una hoja de cálculo o una aplicación de presupuesto, sin olvidar proteger nuestros datos personales.</p>
+    </section>
+
+    <section class="content-section" id="estrategia">
+      <div class="tag">Tema 3</div>
+      <h2>Una estrategia financiera para Glow Care</h2>
+      <p>Como Glow Care es una idea de negocio de productos de cuidado personal y cosmética, podemos aprovechar las herramientas digitales para organizar las ventas y manejar mejor el dinero. La estrategia sería sencilla y se podría aplicar poco a poco.</p>
+      <ol>
+        <li><strong>Llevar las cuentas:</strong> registrar en una hoja de cálculo cada venta, compra de productos, empaque, envío y otros gastos. Así podemos saber si realmente estamos ganando.</li>
+        <li><strong>Separar el dinero:</strong> no mezclar el dinero del negocio con los gastos personales. Una parte debe quedar para comprar inventario y otra para cubrir los demás gastos.</li>
+        <li><strong>Ofrecer pagos seguros:</strong> usar medios de pago reconocidos y verificar que los pagos sí hayan llegado antes de entregar un pedido. Nunca pedir ni guardar las claves de los clientes.</li>
+        <li><strong>Revisar los resultados:</strong> al final de cada semana, comparar cuánto vendimos, cuánto gastamos y qué productos tuvieron más salida.</li>
+        <li><strong>Ahorrar para imprevistos:</strong> guardar una pequeña parte de las ganancias para reponer productos o resolver un gasto inesperado.</li>
+        <li><strong>Aprender sobre seguridad:</strong> usar contraseñas diferentes, activar la verificación en dos pasos cuando esté disponible y desconfiar de enlaces o comprobantes extraños.</li>
+      </ol>
+      <img class="article-image" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1000&q=80" alt="Persona organizando cuentas y presupuesto">
+      <p class="note">La idea es que Glow Care no solo venda productos, sino que también tenga un control claro de sus ingresos y gastos. Si organizamos las cuentas desde el comienzo, será más fácil tomar decisiones y evitar pérdidas.</p>
+    </section>
+
+    <section class="content-section">
+      <div class="tag">Para cerrar</div>
+      <h2>Conclusión</h2>
+      <p>La economía digital nos ayuda a hacer muchas cosas de una forma más rápida, pero también requiere responsabilidad. Debemos revisar nuestros gastos, ahorrar cuando sea posible y proteger la información personal. Para Glow Care, usar herramientas digitales para registrar las ventas y los gastos puede ayudar a que el negocio esté mejor organizado.</p>
+      <p>Aprender de finanzas no significa saberlo todo desde el principio. Se trata de ir mejorando nuestros hábitos, preguntar cuando no entendemos algo y pensar antes de gastar o aceptar un servicio financiero.</p>
+    </section>
+
+    <section class="content-section references" id="referencias">
+      <div class="tag">Fuentes consultadas</div>
+      <h2>Referencias y recursos</h2>
+      <ul>
+        <li>Banco de la República. <em>Videos de educación económica.</em> <a href="https://www.banrep.gov.co/es/banrep-educa/material-educativo/videos-educacion-economica" target="_blank" rel="noopener">Ver recurso educativo</a>.</li>
+        <li>Superintendencia Financiera de Colombia. Información para consumidores financieros. <a href="https://www.superfinanciera.gov.co/" target="_blank" rel="noopener">Sitio web oficial</a>.</li>
+        <li>Diseño complementario de la actividad en Canva: <a href="https://canva.link/rejwj5nwxuinn1a" target="_blank" rel="noopener">abrir diseño</a>.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Glow Care</strong> · Proyecto escolar · Grado once</p>
+    <p>Una idea de negocio que vamos construyendo paso a paso.</p>
+  </footer>
+</body>
+</html>
